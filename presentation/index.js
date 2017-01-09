@@ -46,6 +46,7 @@ const images = {
   chrome: require("../assets/chrome.png"),
   android: require("../assets/android.png"),
   ios: require("../assets/ios.png"),
+  onGithub: require("../assets/ios.png"),
   codemash: require("../assets/codemash.gif")
 };
 
@@ -55,7 +56,6 @@ const theme = createTheme({
   primary: "#014081",
   secondary: "white"
 });
-console.log("theme", theme);
 
 const imageWidth = 90
 
@@ -64,6 +64,7 @@ class Exercise extends React.Component {
     return(
       <div>
         <Heading>Exercise</Heading>
+
         <Image src={images.codemash.fmt()}/>
 
         <Text>{this.props.title}</Text>
@@ -102,6 +103,34 @@ export default class Presentation extends React.Component {
 
           <Slide bgImage={images.react.fmt()} bgDarken={0.75} transition={["zoom", "fade"]}>
              <Heading fit caps>Why?</Heading>
+
+              <List>
+                <Appear><ListItem>#5 of all projects Github</ListItem></Appear>
+                <Appear><ListItem>Simplicty</ListItem></Appear>
+                <Appear><ListItem>It's just JavaScript</ListItem></Appear>
+                <Appear><ListItem>Learn Once, Write Everywhere</ListItem></Appear>
+              </List>
+          </Slide>
+
+          <Slide bgImage={images.react.fmt()} bgDarken={0.75} transition={["zoom", "fade"]}>
+            <Heading fit caps>Where?</Heading>
+            <List>
+              <Appear><ListItem>Web</ListItem></Appear>
+              <Appear><ListItem>iOS</ListItem></Appear>
+              <Appear><ListItem>Android</ListItem></Appear>
+              <Appear><ListItem>Static Sites</ListItem></Appear>
+              <Appear><ListItem>OSX</ListItem></Appear>
+              <Appear><ListItem>VR</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide bgImage={images.react.fmt()} bgDarken={0.75} transition={["zoom", "fade"]}>
+            <Heading fit caps>What?</Heading>
+            <List>
+              <Appear><ListItem>Declarative</ListItem></Appear>
+              <Appear><ListItem>Component Based</ListItem></Appear>
+              <Appear><ListItem>Learn Once, Write anywhere</ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide bgColor="primary" notes="">
@@ -113,6 +142,7 @@ export default class Presentation extends React.Component {
               source={require("raw!../assets/deck.example")}
               margin="19px auto"
             />
+
           </Slide>
 
           <Slide bgColor="primary" notes="">
@@ -124,18 +154,32 @@ export default class Presentation extends React.Component {
               source={require("raw!../assets/nested.example")}
               margin="19px auto"
             />
+
+            <Link href="https://babeljs.io/repl/" style={ {color: 'white'} }>How does this work...</Link>
           </Slide>
 
           <Slide bgColor="primary" notes="">
-            <Heading fit caps>Even this deck...</Heading>
+            <Heading fit>Even this deck...</Heading>
 
             <CodePane
-              textSize="30px"
+              textSize="28px"
               lang="jsx"
               source={require("raw!../assets/slide.example")}
               margin="19px auto"
             />
           </Slide>
+
+          <Slide bgColor="primary" notes="">
+            <Heading fit caps>Back to this...</Heading>
+
+            <CodePane
+              textSize="32"
+              lang="jsx"
+              source={require("raw!../assets/deck.example")}
+              margin="19px auto"
+            />
+          </Slide>
+
 
           <Slide bgImage={images.react.fmt()} bgDarken={0.75} transition={["zoom", "fade"]}>
              <Heading fit caps>Batteries not included</Heading>
@@ -156,12 +200,55 @@ export default class Presentation extends React.Component {
             />
           </Slide>
 
+         <Slide>
+            <CodePane
+              textSize="29"
+              lang="javascript"
+              source={`class Session extends React.Component //
+
+Session.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired
+}
+ `}
+              margin="19px auto"
+            />
+         </Slide>
+
           <Slide>
             <Exercise
-              title="Nest a Speaker component inside of Session"
+              title="PropTypes"
+              source="Session.propTypes = {}"
+            />
+          </Slide>
+
+          <Slide>
+            <Exercise
+              title="Lets add real data."
               source="<Speaker name={firstName + lastName} />"
             />
           </Slide>
+
+          <Slide>
+            <Exercise
+              title="Lets make a Speaker component."
+              source="<Speaker name={firstName + lastName} />"
+            />
+          </Slide>
+
+          <Slide>
+            <Exercise
+              title="Toggle Favorite Session"
+              source="<Session onFav={this.toggleFavorite.bind(this)} />"
+            />
+          </Slide>
+
+      <Slide>
+      <Heading>Fetch</Heading>
+        <CodePane
+          source={`fetch(url).then((r) => r.json().then(callback))
+          .catch(console.error);`}/>
+      </Slide>
 
           <Slide>
             <Exercise
@@ -185,7 +272,9 @@ export default class Presentation extends React.Component {
           <Slide>
             <Exercise
               title="Write Smoke Tests for Session/Speaker"
-              source={`it('renders without crashing', () => {`}
+              source={`it('renders without crashing', () => {`
+
+       }
             />
           </Slide>
 
@@ -232,11 +321,10 @@ export default class Presentation extends React.Component {
 
           <Slide>
             <Exercise
-              title="Create Loading Comopnent"
-      source={ `
-        <Loading loading={this.state.loading}>
-          <SessionList sessions={this.state.sessions}/>
-        </Loading>
+              title="Create Loading Component"
+      source={ `<Loading loading={this.state.loading}>
+  <SessionList sessions={this.state.sessions}/>
+</Loading>
 ` } />
           </Slide>
 
@@ -259,6 +347,20 @@ export default class Presentation extends React.Component {
             <Heading fit caps>Redux</Heading>
           </Slide>
 
+          <Slide bgColor="primary" notes="">
+      <CodePane
+        lang="js"
+        source={`{sessions: [], loading: true}
+// an event gets dispatch
+
+store.dispatch({ type: 'SESSIONS_LOADED', data: [{Title: 'React Everywhere'/*...*/]});
+
+// reducer returns an entire new state
+
+return {sessions: [{Title:'React Everywhere'/*...*/], loading: false}
+`}/>
+          </Slide>
+
           <Slide>
             <Exercise
               title="Put user data in "
@@ -268,12 +370,29 @@ export default class Presentation extends React.Component {
 
           <Slide bgColor="primary" notes="">
             <Heading fit caps>Router</Heading>
+            <List>
+              <ListItem>/speakers/123</ListItem>
+              <ListItem>/sessions/1234</ListItem>
+            </List>
+          </Slide>
+
+          <Slide bgColor="primary" notes="">
           </Slide>
 
           <Slide bgColor="primary" notes="">
             <Heading fit caps>Ramda</Heading>
           </Slide>
 
+          <Slide bgColor="primary" notes="">
+            <Heading fit caps>Flexbox</Heading>
+* [A Complete Guide to Flexbox | CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [Flexbox Froggy - A game for learning CSS flexbox](http://flexboxfroggy.com/)
+* [What The FlexBox?! - A free 20 video course to learn CSS Flexbox](http://flexbox.io/)
+          </Slide>
+
+          <Slide bgColor="primary" notes="">
+            <Heading fit caps>Learning Flexbox</Heading>
+          </Slide>
         </Deck>
       </Spectacle>
     );

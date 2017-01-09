@@ -1,10 +1,8 @@
 <Slide bgColor="primary" notes="">
   <Heading fit caps>Even this deck...</Heading>
-
   <CodePane
     textSize="30"
     lang="jsx"
     source={require("raw!../assets/slide.example")}
-    margin="19px auto"
-  />
+    margin="19px auto"/>
 </Slide>
