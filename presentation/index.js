@@ -121,6 +121,8 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>Static Sites</ListItem></Appear>
               <Appear><ListItem>OSX</ListItem></Appear>
               <Appear><ListItem>VR</ListItem></Appear>
+              <Appear><ListItem>Hardware</ListItem></Appear>
+              <Appear><ListItem>Music</ListItem></Appear>
             </List>
           </Slide>
 
@@ -132,6 +134,12 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>Learn Once, Write anywhere</ListItem></Appear>
             </List>
           </Slide>
+          
+          
+          <Slide bgImage={images.react.fmt()} bgDarken={0.75} transition={["zoom", "fade"]}>
+            <Heading fit caps>Data > DOM</Heading>
+          </Slide>
+
 
           <Slide bgColor="primary" notes="">
             <Heading fit caps>Component Based</Heading>
@@ -208,7 +216,8 @@ export default class Presentation extends React.Component {
 
 Session.propTypes = {
   title: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired
+  abstract: React.PropTypes.string.isRequired,
+  speakers: React.PropTypes.array.isRequires
 }
  `}
               margin="19px auto"
